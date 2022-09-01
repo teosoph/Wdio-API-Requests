@@ -1,0 +1,31 @@
+{
+    "name": "wdio-axios-api-requests",
+    "version": "1.0.0",
+    "description": "testing API requests with wdio & axios",
+    "scripts": {
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/teosoph/Wdio-API-Requests.git"
+    },
+    "author": "teosoph",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/teosoph/Wdio-API-Requests/issues"
+    },
+    "homepage": "https://github.com/teosoph/Wdio-API-Requests#readme",
+    "dependencies": {
+        "allure": "^0.0.0",
+        "axios": "^0.27.2",
+        "request": "^2.88.2"
+    },
+    "devDependencies": {
+        "@wdio/cli": "^7.20.2",
+        "@wdio/local-runner": "^7.20.2",
+        "@wdio/mocha-framework": "^7.20.0",
+        "@wdio/spec-reporter": "^7.20.0",
+        "chromedriver": "^104.0.0",
+        "wdio-chromedriver-service": "^7.3.2"
+    }
+}
