@@ -12,12 +12,12 @@ class HelperQA {
         });
     }
     async apiFailureCallback(error) {
-        console.dir(error.code);
+        console.dir('Error code: -------------->', error.code);
         if (typeof error.response !== 'undefined') {
             console.log('---------------API REQUEST ERROR------------------');
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+            console.log('API reaquest ERROR data:', error.response.data);
+            console.log('API reaquest ERROR status:', error.response.status);
+            console.log('API reaquest ERROR headers:', error.response.headers);
             console.log('---------------API REQUEST ERROR------------------');
         }
         throw error;
@@ -70,9 +70,21 @@ class HelperQA {
                         via: item.via
                     };
                 });
-                console.log('messages-------------------------------', mailsObj);
+                console.log('Message objects: ------------------------------->', mailsObj);
             })
             .catch(this.apiFailureCallback);
+    }
+    async deleteMessageById(email, messageId) {
+        const client = await this.configAxios();
+        return client
+            .delete(`https://mailsac.com/api/addresses/${email}/messages/${messageId}`, {})
+            .then((response) => {
+                console.log('Info about deleted message  ------------------> ', response.data);
+                return response.data;
+            })
+            .catch((error) => {
+                this.apiFailureCallback(error);
+            });
     }
     async postDeleteAllMessages(domain) {
         const client = await this.configAxios();
