@@ -3,36 +3,23 @@ const HelperQA = require('../pageObjects/HelperQA.page');
 
 const email = `teosoph@mailsac.com`;
 
-describe('api request from wdio ', () => {
-    it('check Email', async () => {
-        // await HelperQA.checkMesages(email);
+describe('Api request from wdio', () => {
+    it('Get information about my account', async () => {
+        await HelperQA.getInfoAboutMe();
+    });
+    it('Get information about message quantity', async () => {
         await HelperQA.getMessageCount(email);
     });
+    it('Get general information about inbox messages', async () => {
+        await HelperQA.getMessagesBody(email);
+    });
+    it('Get object formatted information about inbox messages', async () => {
+        await HelperQA.getFormattedMessagesObj(email);
+    });
+    it('Delete all incoming messages from a specific domain', async () => {
+        await HelperQA.postDeleteAllMessages('example.msdc.co');
+    });
+    it('Validate email addresses', async () => {
+        await HelperQA.postValidationsAddresses();
+    });
 });
-
-// const getMessageCount = {
-//     method: 'GET',
-//     url: `https://mailsac.com/api/addresses/${email}/message-count`,
-//     headers: { 'Mailsac-Key': 'k_wU5aX7qRtV76cAFmtN7Y9006iiyxzAaYZoZ4EAqr4tjfmI51' }
-// };
-// request(getMessageCount, (error, response, body) => {
-//     console.error('!!!!! error:', error);
-//     console.log('>>>>>>> statusCode:', response && response.statusCode);
-//     console.log('GET message count body ===========================================>', body);
-// });
-
-// const postValidationsAddresses = {
-//     method: 'POST',
-//     url: 'https://mailsac.com/api/validations/addresses',
-//     headers: {
-//         'content-type': 'application/json',
-//         'Mailsac-Key': 'k_wU5aX7qRtV76cAFmtN7Y9006iiyxzAaYZoZ4EAqr4tjfmI51'
-//     },
-//     body: { emails: ['teosoph@mailsac.com'] },
-//     json: true
-// };
-// request(postValidationsAddresses, (error, response, body) => {
-//     console.error('!!!!! error:', error);
-//     console.log('>>>>>>> statusCode:', response && response.statusCode);
-//     console.log('POST validations addresses body ---------------------------------------->', body);
-// });
